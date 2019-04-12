@@ -13,7 +13,7 @@ Student.prototype.enroll = function(course) {
 Student.prototype.courseLoad = function() {
   let load = new Map;
   this.courses.myEach(function(course) {
-    if (load[course.department]) {
+    if (!load[course.department]) {
       load[course.department] = course.credits;
     } else {
       load[course.department] += course.credits;
@@ -21,6 +21,9 @@ Student.prototype.courseLoad = function() {
   })
   return load;
 }
+
+
+
 
 
 function Course(name, department, credits) {
@@ -33,3 +36,8 @@ function Course(name, department, credits) {
 Course.prototype.addStudent = function(student) {
   student.enroll(this);
 }
+
+esteban = new Student('esteban', 'ramirez')
+math = new Course('calc', 'Mathematics', 5)
+poetry = new Course('poetry', 'English', 3)
+esteban.enroll(math)
